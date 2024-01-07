@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dane</title>
+</head>
+<body>
+    <h1>Temperatura</h1>
+    <ul>
+        {% for x in data %}
+            <li>Temperatura: {{ x.temperature }}, Data: {{ x.date }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

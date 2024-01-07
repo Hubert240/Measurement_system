@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wilgotność</title>
+</head>
+<body>
+    <h1>Wilgotność</h1>
+    <ul>
+        {% for x in data %}
+            <li>Wilgotność: {{ x.humidity }}, Data: {{ x.date }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
