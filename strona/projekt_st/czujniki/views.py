@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import Data,Motion
+from .models import Data ,Motion
+from .serializer import DataSerializer, MotionSerializer
+from rest_framework import viewsets
 
 
 def index(request):
@@ -16,3 +18,12 @@ def humidity(request):
 def motion(request):
     data = Motion.objects.all()
     return render(request, 'motion.html', {'data': data})
+
+
+class DataViewSet(viewsets.ModelViewSet):
+    queryset = Data.objects.all()
+    serializer_class = DataSerializer
+
+class MotionViewSet(viewsets.ModelViewSet):
+    queryset = Motion.objects.all()
+    serializer_class = MotionSerializer
