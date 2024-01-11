@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ruch</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div>
@@ -11,8 +12,34 @@
     <h1>Ruch</h1>
     <ul>
         {% for x in data %}
-            <li>Ruch: {{ x.data }}, Data: {{ x.date }}</li>
+            <li>Ruch: {{ x.motion }}, Data: {{ x.date }}</li>
         {% endfor %}
     </ul>
+<ul id="motion-list"></ul>
+<script>
+function fetchData() {
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/motion/',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                const motionList = document.getElementById('motion-list');
+                motionList.innerHTML = '';
+                data.forEach(x => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Motion: ${x.motion}, Date: ${x.date}`;
+                    motionList.appendChild(listItem);
+                });
+            },
+            error: function(error) {
+                console.error('Błąd pobierania danych z API:', error);
+            }
+        });
+    }
+
+    fetchData();
+
+    setInterval(fetchData, 2000);
+</script>
 </body>
 </html>
