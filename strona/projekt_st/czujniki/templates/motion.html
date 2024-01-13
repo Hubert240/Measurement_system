@@ -1,45 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Ruch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="{% static 'images/sun.ico' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Ruch</title>
+    <link rel="stylesheet" href="{% static 'css/motion.css' %}">
 </head>
 <body>
-<div>
-<a href="{% url 'index' %}">Strona główna</a>
-</div>
-    <h1>Ruch</h1>
-    <ul>
-        {% for x in data %}
-            <li>Ruch: {{ x.motion }}, Data: {{ x.date }}</li>
-        {% endfor %}
-    </ul>
-<ul id="motion-list"></ul>
-<script>
-function fetchData() {
-        $.ajax({
-            url: 'http://127.0.0.1:8000/api/motion/',
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                const motionList = document.getElementById('motion-list');
-                motionList.innerHTML = '';
-                data.forEach(x => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `Motion: ${x.motion}, Date: ${x.date}`;
-                    motionList.appendChild(listItem);
-                });
-            },
-            error: function(error) {
-                console.error('Błąd pobierania danych z API:', error);
-            }
-        });
-    }
+    <div id="page-container">
+        <div id="top-bar">
+            <a href="{% url 'index' %}">Strona główna</a>
+            <a href="{% url 'temperature' %}">Temperatura</a>
+            <a href="{% url 'humidity' %}">Wilgotność</a>
+        </div>
 
-    fetchData();
+        <div id="content-container">
+            <h1>Ruch</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ruch</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody id="motion-table-body"></tbody>
+            </table>
+        </div>
+    </div>
 
-    setInterval(fetchData, 2000);
-</script>
+<script src="{% static 'js/motion.js' %}"></script>
 </body>
 </html>

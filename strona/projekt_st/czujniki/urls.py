@@ -12,4 +12,6 @@ urlpatterns = [
     path('humidity/', views.humidity, name='humidity'),
     path('', views.index, name='index'),
     path('api/', include(router.urls)),
+    path('current_date/', views.current_date, name='current_date'),
+    path('data_from_specific_day/<str:dzien>/', views.data_from_specific_day, name='data_from_specific_day'),
 ]

@@ -1,53 +1,55 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Wilgotność</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="{% static 'images/sun.ico' %}" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/humidity.css' %}">
+    <title>Wilgotność</title>
+
 </head>
 <body>
-    <div>
-        <a href="{% url 'index' %}">Strona główna</a>
+    <div id="page-container">
+        <div id="top-bar">
+            <a href="{% url 'index' %}">Strona główna</a>
+            <a href="{% url 'temperature' %}">Temperatura</a>
+            <a href="{% url 'motion' %}">Ruch</a>
+        </div>
+
+        <div id="content-container">
+            <h1>Wilgotność</h1>
+            <div>
+                <canvas id="masno" style="max-height: 250px; max-width: 1000px; min-height: 200px; min-width: 1000px;"></canvas>
+            </div>
+            <div class="info-bar">
+                <div class="info-item">
+                    <strong ><p id="max-humidity"></p> </strong>
+                </div>
+                <div class="info-item">
+                    <strong><p id="average-humidity"></p></strong>
+                </div>
+                <div class="info-item">
+                    <strong><p id="median-humidity"></p></strong>
+                </div>
+            </div>
+        <table>
+                <thead>
+                <tr>
+                        <th>Wilgotność</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+            <tbody id="humidity-table-body">
+        </tbody>
+        </table>
+        </div>
     </div>
-    <h1>Wilgotność</h1>
-    <p id="average-humidity"></p>
-    <ul id="humidity-list"></ul>
-
-
-    <script>
-        function fetchData() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/data/',
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    const humidityList = document.getElementById('humidity-list');
-                    const averageHumidityElement = document.getElementById('average-humidity'); // Nowy element na średnią wilgotność
-                    humidityList.innerHTML = '';
-
-                    let totalHumidity = 0;
-
-                    data.forEach(x => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = `Humidity: ${x.humidity}, Date: ${x.date}`;
-                        humidityList.appendChild(listItem);
-
-                        totalHumidity += x.humidity;
-                    });
-
-                    const averageHumidity = totalHumidity / data.length;
-
-                    averageHumidityElement.textContent = `Średnia wilgotność: ${averageHumidity.toFixed(2)}`; // Wyświetlamy średnią wilgotność
-                },
-                error: function(error) {
-                    console.error('Błąd pobierania danych z API:', error);
-                }
-            });
-        }
-
-        fetchData();
-
-        setInterval(fetchData, 2000);
-    </script>
+<script src="{% static 'js/humidity.js' %}"></script>
 </body>
 </html>
