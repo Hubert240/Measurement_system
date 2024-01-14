@@ -21,16 +21,20 @@
 
         <div id="content-container">
             <h1>Temperatura</h1>
-            <div>
-                <canvas id="masno" style="max-height: 200px; max-width: 1000px;"></canvas>
+            <div style="display: flex; width: 100%;">
+                <div style="flex: 1; margin: 5px;">
+                    <canvas id="masno" style="height: 250px; width: 100%;"></canvas>
+                </div>
+                <div style="flex: 1; margin: 5px;">
+                    <canvas id="masno2" style="height: 250px; width: 100%;"></canvas>
+                </div>
             </div>
-
             <div class="info-bar">
                 <div class="info-item">
                     <strong><p id="max-temperature"></p></strong>
                 </div>
                 <div class="info-item">
-                    <strong><p id="average-temperature"></strong>
+                    <strong><p id="average-temperature"></p></strong>
                 </div>
                 <div class="info-item">
                     <strong> <p id="median-temperature"></p></strong>
@@ -55,4 +59,3 @@
 <script src="{% static 'js/temperature.js' %}"></script>
 </body>
 </html>
-
