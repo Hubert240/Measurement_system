@@ -224,7 +224,7 @@ function calculateAverageTemperature(data) {
                     array.push(counter);
                     // Komórka dla wilgotności
                     const humidityCell = document.createElement('td');
-                    humidityCell.textContent = x.humidity;
+                    humidityCell.textContent = x.humidity + " %";
                     row.appendChild(humidityCell);
 
                     // Komórka dla daty
@@ -245,16 +245,16 @@ function calculateAverageTemperature(data) {
                 });
                 const averageHumidity = totalHumidity / data.length;
                 const averageHumidityElement = document.getElementById('average-humidity');
-                averageHumidityElement.textContent = `Średnia wilgotność: ${averageHumidity.toFixed(2)}`;
+                averageHumidityElement.textContent = `Średnia wilgotność: ${averageHumidity.toFixed(2)}%`;
 
                  const maxHumidityElement = document.getElementById('max-humidity');
-                 maxHumidityElement.textContent = `Najwyższa wilgotność: ${maxHumidity.toFixed(2)}`;
+                 maxHumidityElement.textContent = `Najwyższa wilgotność: ${maxHumidity.toFixed(2)}%`;
 
                 humidities.sort((a,b) => a - b);
 
                 const medianHumidity = calculateMedian(humidities);
                 const medianHumidityElement = document.getElementById('median-humidity');
-                medianHumidityElement.textContent = `Mediana wilgotności: ${medianHumidity.toFixed(2)}`;
+                medianHumidityElement.textContent = `Mediana wilgotności: ${medianHumidity.toFixed(2)}%`;
 
 
                 data.reverse();

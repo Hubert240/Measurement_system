@@ -226,7 +226,7 @@ function calculateAverageTemperature(data) {
                     array.push(counter);
                     // Komórka dla wilgotności
                     const humidityCell = document.createElement('td');
-                    humidityCell.textContent = x.temperature;
+                    humidityCell.textContent = x.temperature + " °C";
                     row.appendChild(humidityCell);
 
                     // Komórka dla daty
@@ -247,16 +247,16 @@ function calculateAverageTemperature(data) {
                 });
                 const averageTemperature = totalTemperature / data.length;
                 const averageTemperatureElement = document.getElementById('average-temperature');
-                averageTemperatureElement.textContent = `Średnia temperatura: ${averageTemperature.toFixed(2)}`;
+                averageTemperatureElement.textContent = `Średnia temperatura: ${averageTemperature.toFixed(2)}°C`;
 
                 const maxTemperatureElement = document.getElementById('max-temperature');
-                maxTemperatureElement.textContent = `Najwyższa temperatura: ${maxTemperature.toFixed(2)}`;
+                maxTemperatureElement.textContent = `Najwyższa temperatura: ${maxTemperature.toFixed(2)}°C`;
 
                 temperatures.sort((a, b) => a - b);
 
                 const medianTemperature = calculateMedian(temperatures);
                 const medianTemperatureElement = document.getElementById('median-temperature');
-                medianTemperatureElement.textContent = `Mediana temperatury: ${medianTemperature.toFixed(2)}`;
+                medianTemperatureElement.textContent = `Mediana temperatury: ${medianTemperature.toFixed(2)}°C`;
 
                 data.reverse();
                 const result2 = getLast15TemperaturesAndHours(data);
