@@ -1,0 +1,8 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/strona/.idea/
+/strona/venv/
+sensor_db.sql
+st.docx
+mysql.txt
